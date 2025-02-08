@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    </style>
+</head>
+<body>
+    <h2>Complete Your Payment</h2>
+
+    <!-- Razorpay Payment Button -->
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js"
+            data-payment_button_id="pl_PtC2gL79zf2sBQ"
+            async>
+        </script>
+    </form>
+
+    <script>
+        function getQueryParam(name) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        let macAddress = getQueryParam("mac");  // Extract MAC from URL
+        if (macAddress) {
+            localStorage.setItem("macAddress", macAddress); // Store MAC address
+            document.getElementById("macDisplay").innerText = macAddress;
+        }
+    </script>
+</body>
+</html>
